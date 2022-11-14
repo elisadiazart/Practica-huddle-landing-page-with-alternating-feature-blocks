@@ -1,0 +1,94 @@
+$main--background:hsl(200, 20%, 97%);
+$text--color-gray:hsl(208, 11%, 55%);
+
+$breakpoints: (
+    tablet: 640px,
+    laptop: 1024px,
+    desktop: 1440px
+);
+
+@mixin responsive($key) {
+    @if map-has-key($breakpoints, $key) {
+        @media screen and (min-width: map-get($breakpoints, $key)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (min-width: $key) {
+            @content;
+        }
+    }
+}
+
+.main{
+    background-color: $main--background;
+    padding: 3rem;
+    padding-bottom: 15rem;
+    position: relative;
+}
+
+.section{
+    border-radius: 20px;
+    background-color: white;
+    padding: 3rem;
+    box-shadow: 0px 5px 10px darken($main--background, 4);
+    margin-bottom: 2.5rem;
+    @include responsive(laptop){
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    
+    &__picture{
+        width: 90%;
+        margin-bottom: 4rem;
+        @include responsive(laptop){
+            width: 40%;
+            margin-bottom: 0;
+        }
+    }
+
+    &__title{
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        font-size: 1.2rem;
+        @include responsive(laptop){
+            text-align: left;
+            padding: 2rem;
+            padding-bottom: 0;
+        }
+    }
+    &__text{
+        padding: 1rem;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .9rem;
+        line-height: 1.5rem;
+        color: $text--color-gray ;
+        @include responsive(laptop){
+            text-align: left;
+            padding: 2rem;
+            padding-top: 0;
+            margin-right: 4rem;
+        }
+    }
+}
+
+.section--reverse{
+    @include responsive(laptop){
+        display: flex;
+        flex-direction: row;
+    }
+    &__text{
+        @include responsive(laptop){
+            margin-right: 0;
+            margin-left: 4rem;
+        }
+    }
+    &__title{
+        @include responsive(laptop){
+            margin-right: 0;
+            margin-left: 4rem;
+        }
+    }
+}

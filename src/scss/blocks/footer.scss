@@ -1,0 +1,146 @@
+$footer-background:hsl(192, 100%, 9%);
+
+$breakpoints: (
+    tablet: 640px,
+    laptop: 1024px,
+    desktop: 1440px
+);
+
+@mixin responsive($key) {
+    @if map-has-key($breakpoints, $key) {
+        @media screen and (min-width: map-get($breakpoints, $key)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (min-width: $key) {
+            @content;
+        }
+    }
+}
+
+.footer{
+    background-color: $footer-background;
+
+    &__bottom{
+        margin-left: 2rem;
+        margin-right: 2rem;
+        @include responsive(laptop){
+            display: flex;
+        }
+    }
+
+    &__company-container{
+        @include responsive(laptop){
+            width: 30%;
+            margin-left: 3rem;
+            margin-right: 5rem;
+        }
+    }
+
+    &__company{
+        width: 40%;
+        margin-bottom: 1.5rem;
+        @include responsive(laptop){
+            width: 150px;
+            object-fit: contain;
+        }
+    }
+    &__location{
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    &__icon{
+        margin-right: 1.5rem;
+        width: 20px;
+        object-fit: contain;
+    }
+    &__text{
+        margin: 0;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+    &__number{
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    &__mail{
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+    }
+
+    &__link{
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .9rem;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    &__item{
+        padding-bottom: 1.2rem;
+    }
+
+    &__menu{
+        margin-bottom: 1rem;
+    }
+
+    &__menu-ul{
+        @include responsive(laptop){
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 4rem;
+            margin-top: 3.2rem;
+        }
+    }
+
+    &__social-media-container{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        padding: 1rem;
+        @include responsive(laptop){
+            margin: 0;
+            height: 72px;
+            margin-top: 2rem;
+            margin-left: 5rem;
+        }
+    }
+    &__copyright{
+        color: white;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .7rem;
+        padding-bottom: 3rem;
+        @include responsive(laptop){
+            text-align: right;
+            margin-right: 4rem;
+        }
+    }
+}
+
+.fa-brands{
+    font-size: .7rem;
+    padding: .5rem;
+    color: white;
+    border-radius: 50%;
+    margin: .3rem;
+    border: 2px solid white;
+    &:hover{
+        cursor: pointer;
+        color: hsl(322, 100%, 66%);
+        border-color: hsl(322, 100%, 66%);
+    }
+    }
+
+.fa-facebook-f{
+    text-align: center;
+    width: 31.2px;
+}

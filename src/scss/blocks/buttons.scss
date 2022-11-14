@@ -1,0 +1,44 @@
+$breakpoints: (
+    tablet: 640px,
+    laptop: 1024px,
+    desktop: 1440px
+);
+
+@mixin responsive($key) {
+    @if map-has-key($breakpoints, $key) {
+        @media screen and (min-width: map-get($breakpoints, $key)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (min-width: $key) {
+            @content;
+        }
+    }
+}
+
+
+
+.button--primary-pink {
+    padding: 1rem;
+    width: 70%;
+    color: white;
+    margin: auto;
+    text-align: center;
+    background-color: hsl(322, 100%, 66%);
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: .9rem;
+    margin-bottom: 5rem;
+    &:hover{
+          background-color: lighten(hsl(322, 100%, 66%), 13);  
+          cursor: pointer;
+    }
+    @include responsive(laptop){
+        margin: 0;
+        margin-left: 2rem;
+        width: 60%;
+    }
+}
+
